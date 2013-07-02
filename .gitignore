@@ -19,3 +19,4 @@ pickle-email-*.html
 .project
 /config/database.yml
 /config/mailer.yml
+/config/amazon.yml

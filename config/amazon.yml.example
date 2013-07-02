@@ -1,0 +1,14 @@
+development:
+  key: 'YOUR_KEY'
+  secret: 'YOUR_SECRET'
+  associate:
+		
+production:
+  key: 'YOUR_KEY'
+  secret: 'YOUR_SECRET'
+	associate:
+	  
+test:
+  key: 'YOUR_KEY'
+  secret: 'YOUR_SECRET'
+	associate:
