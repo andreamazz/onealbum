@@ -1,4 +1,6 @@
 Onealbum::Application.routes.draw do
+  resources :albums
+
   devise_for :users
   get "home/index"
   
