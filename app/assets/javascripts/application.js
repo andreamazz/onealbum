@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-dropdown
+//= require jquery.facebox
 //= require_tree .

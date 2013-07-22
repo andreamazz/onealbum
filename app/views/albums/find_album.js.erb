@@ -1,6 +1,8 @@
 $(document).ready(function() {
-	$('#albums').html("");
+	var html = "<div style='padding:10px;'><h3>Albums</h3><ul id='albums' class='nav nav-tabs nav-stacked'>";
 	<% @data.each do |thumb| %>
-			$('#albums').append("<li><a href='#'><img class='cover img-polaroid' src='<%= j thumb[:cover] %>'/> <span class='title'><%= j thumb[:artist] %><br /><%= j thumb[:title] %></span></a></li>");
+			html += "<li><a href='#'><img class='cover img-polaroid' src='<%= j thumb[:cover] %>'/> <span class='title'><%= j thumb[:artist] %><br /><%= j thumb[:title] %></span></a></li>";
 	<% end %>
+	html += "</ul></div>";
+	jQuery.facebox(html, 'facebox-albums');
 });

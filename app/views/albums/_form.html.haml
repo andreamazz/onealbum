@@ -4,8 +4,6 @@
 		= text_field_tag :query
 		= submit_tag 'Search', class: "btn"
 
-%ul#albums.nav.nav-tabs.nav-stacked
-
 = form_for @album do |f|
 	- if @album.errors.any?
 		#error_explanation
