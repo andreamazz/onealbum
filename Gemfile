@@ -22,10 +22,6 @@ gem 'font-awesome-rails'
 # Twitter Bootstrap
 gem 'bootstrap-sass'
 
-# Amazon AWS album artworks
-gem 'nokogiri'
-gem 'sucker'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

@@ -1,13 +1,15 @@
 class AlbumsController < ApplicationController
-  include AmazonAlbumArt
+  include Deezer
   
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
-  def cover
-    client = AmazonAlbumArt.new(AMAZON_KEY['key'], AMAZON_KEY['secret'], AMAZON_KEY['associate'])
-    res = client.search("phish", "rift")
+  respond_to :html, :json, :js
 
-    # :artist=>"Phish", :album=>"Rift", :images=>{:swatch=>"http://ecx.images-amazon.com/images/I/511RmbQV7dL._SL30_.jpg", :small=>"http://ecx.images-amazon.com/images/I/511RmbQV7dL._SL75_.jpg", :thumbnail=>"http://ecx.images-amazon.com/images/I/511RmbQV7dL._SL75_.jpg", :tiny=>"http://ecx.images-amazon.com/images/I/511RmbQV7dL._SL110_.jpg", :medium=>"http://ecx.images-amazon.com/images/I/511RmbQV7dL._SL160_.jpg", :large=>"http://ecx.images-amazon.com/images/I/511RmbQV7dL.jpg"}}
+  # GET /find_album?query=artist
+  def find_album
+    client = Fetcher.new()
+    data = client.search_albums_from_artist params[:query]
   end
 
   # GET /albums
@@ -33,6 +35,7 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
+    
     @album = Album.new(album_params)
 
     respond_to do |format|
@@ -78,6 +81,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :author, :rating, :text, :user_id)
+      params.require(:album).permit(:title, :author, :rating, :text, :cover, :deezer_id).merge(user_id: current_user.id)
     end
 end
