@@ -3,7 +3,7 @@ Onealbum::Application.routes.draw do
 
   devise_for :users
   get "home/index"
-  
+  get 'find_album' => 'albums#find_album'
   
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

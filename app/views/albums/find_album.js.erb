@@ -1,0 +1,6 @@
+$(document).ready(function() {
+	$('#albums').html("");
+	<% @data.each do |thumb| %>
+			$('#albums').append("<li><a href='#'><img class='cover img-polaroid' src='<%= j thumb[:cover] %>'/> <span class='title'><%= j thumb[:artist] %><br /><%= j thumb[:title] %></span></a></li>");
+	<% end %>
+});

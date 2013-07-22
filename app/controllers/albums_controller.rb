@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
   # GET /find_album?query=artist
   def find_album
     client = Fetcher.new()
-    data = client.search_albums_from_artist params[:query]
+    @data = client.search_albums_from_artist params[:query]
   end
 
   # GET /albums

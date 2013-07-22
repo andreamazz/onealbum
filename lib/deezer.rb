@@ -13,7 +13,13 @@ module Deezer
       })
 
       json = JSON.parse open(albums).read
-      json["data"].map { |album| { title: album["title"], id: album["id"], cover: album["cover"] } }
+      json["data"].map { |album| { 
+        artist: album["artist"]["name"], 
+        artist_id: album["artist"]["id"], 
+        title: album["title"], 
+        id: album["id"], 
+        cover: album["cover"] } 
+      }
     end
     
   end
