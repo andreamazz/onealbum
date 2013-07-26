@@ -3,3 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'page:change', -> $.facebox.settings.inited = false
+
+$ ->
+	$('body').delegate '#albums > a', 'click', () ->
+		console.log $(@).data('deezer-id')

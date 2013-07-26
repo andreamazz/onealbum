@@ -1,8 +1,15 @@
 $(document).ready(function() {
 	var html = "<div style='padding:10px;'><h3>Albums</h3><ul id='albums' class='nav nav-tabs nav-stacked'>";
 	<% @data.each do |thumb| %>
-			html += "<li><a href='#'><img class='cover img-polaroid' src='<%= j thumb[:cover] %>'/> <span class='title'><%= j thumb[:artist] %><br /><%= j thumb[:title] %></span></a></li>";
+			html += "<li class='album'><a href='#' data-deezer-id='<%= j thumb[:id].to_s %>' data-artist-id='<%= j thumb[:atist_id] %>'><img class='cover img-polaroid' src='<%= j thumb[:cover] %>'/> <div class='album-detail'><span class='artist'><%= j thumb[:artist] %></span><br /><span class='title'><%= j thumb[:title] %></span></div></a></li>";
 	<% end %>
 	html += "</ul></div>";
-	jQuery.facebox(html, 'facebox-albums');
+	$.facebox(html, 'facebox-albums');
+	
+	$('#albums').delegate('a', 'click', function(e){
+		e.preventDefault();
+		$('#album_title').val($($(this).find('.title')[0]).text());
+		$('#album_author').val($($(this).find('.artist')[0]).text());
+		$(document).trigger('close.facebox');
+	});
 });
