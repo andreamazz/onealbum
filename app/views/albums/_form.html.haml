@@ -19,8 +19,7 @@
 		= f.label :author
 		= f.text_field :author
 	.field
-		= f.label :rating
-		= f.number_field :rating
+		#stars
 	.field
 		= f.label :text
 		= f.text_area :text
@@ -32,3 +31,11 @@
 
 	.actions
 		= f.submit 'Save'
+
+:coffeescript
+	$('#stars').raty
+		starOff: '/assets/star-off.png'
+		starOn : '/assets/star-on.png'
+		scoreName: 'album[rating]'
+	
+

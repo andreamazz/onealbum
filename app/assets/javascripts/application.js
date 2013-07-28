@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap-dropdown
 //= require jquery.facebox
+//= require jquery.raty.min
 //= require_tree .
