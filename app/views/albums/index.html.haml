@@ -10,10 +10,11 @@
 
 :javascript
   $(function() {
-      $(".gridster ul").gridster({
+      var gridster = $(".gridster ul").gridster({
           widget_margins: [0, 0],
           widget_base_dimensions: [120, 120]
-      });
+      }).data('gridster');
+      gridster.disable();
   });
 
 
