@@ -17,4 +17,6 @@
 //= require jquery.facebox
 //= require jquery.raty.min
 //= require jquery.gridster.min
+//= require picker
+//= require picker.date
 //= require_tree .

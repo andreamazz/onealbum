@@ -25,7 +25,7 @@
 		= f.text_area :text
 	.field
 		= f.label :date
-		= f.date_field :date
+		= f.date_field :date, class: 'datepicker'
 	.field
 		= f.hidden_field :cover
 	.field
@@ -40,5 +40,6 @@
 		starOff: '/assets/star-off.png'
 		starOn : '/assets/star-on.png'
 		scoreName: 'album[rating]'
-	
+
+	$('.datepicker').pickadate()	
 
