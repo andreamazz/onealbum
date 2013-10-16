@@ -16,10 +16,14 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
     if params[:month] and params[:year]
-      @albums = Album.albums_for_month_and_year params[:month].to_i, params[:year].to_i
+      @date = Date.new params[:year].to_i, params[:month].to_i, 1
     else
-      today = Date.today
-      @albums = Album.albums_for_month_and_year today.month, today.year
+      @date = Date.today
+    end 
+    results = Album.albums_for_month_and_year @date.month, @date.year
+    @albums = Array.new Time.days_in_month(@date.month, @date.year)
+    results.each do |album|
+      @albums[album.date.day] = album
     end
   end
 
