@@ -5,7 +5,7 @@
     - @albums.each_with_index do |album, i|
       %li{"data-row" => "1", "data-col" => i+1, "data-sizex" => "1", "data-sizey" => "1"}
         = image_tag album.cover
-        %span.date= album.created_at.day
+        %span.date= album.date.day
 
 
 :javascript

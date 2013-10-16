@@ -15,7 +15,12 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    if params[:month] and params[:year]
+      @albums = Album.albums_for_month_and_year params[:month].to_i, params[:year].to_i
+    else
+      today = Date.today
+      @albums = Album.albums_for_month_and_year today.month, today.year
+    end
   end
 
   # GET /albums/1
