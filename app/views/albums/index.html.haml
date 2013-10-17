@@ -1,5 +1,3 @@
-%h1 Listing albums
-
 .gridster
   %ul
     - days = @date.days_to_week_start # Number of days to show of the previous month
@@ -24,7 +22,7 @@
   $(function() {
       var gridster = $(".gridster ul").gridster({
           widget_margins: [0, 0],
-          widget_base_dimensions: [120, 120]
+          widget_base_dimensions: [100, 100]
       }).data('gridster');
       gridster.disable();
   });

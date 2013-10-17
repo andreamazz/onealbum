@@ -6,6 +6,46 @@ $default-text-shadow-color: rgba(black, 0.6)
 $default-text-shadow-blur: 1px
 $default-text-shadow-v-offset: 1px
 
+body 
+  font-family: 'Stint Ultra Expanded', cursive
+
+h1
+  font-family: 'Stint Ultra Expanded', cursive
+  margin: 0 auto
+  text-align: center
+
+.btn
+  +border-radius(0px)
+  
+.section
+  width: 760px
+  margin: 0 auto
+  background: #f8f8f8
+  padding: 20px
+  
+.fieldset
+  margin-top: 20px
+  input
+    width: 100%
+    border: 3px solid #ccc
+    line-height: 30px
+    padding: 5px
+    font-size: 1.5em
+  label
+    position: relative
+    top: -10px
+    color: #787878
+  textarea
+    display: block
+    width: 100%
+    border: 3px solid #ccc
+    padding: 5px
+    font-size: 1.5em
+  
+#stars
+  width: 100%
+  margin: 0 auto
+  
 #albums
   max-height: 300px
   max-width: 600px 
@@ -15,8 +55,8 @@ $default-text-shadow-v-offset: 1px
   padding: 0px !important
 
 .empty
-  width: 120px
-  height: 120px
+  width: 100px
+  height: 100px
   position: relative
   top: -20px
   background: #2E323A
@@ -42,12 +82,12 @@ $default-text-shadow-v-offset: 1px
   +single-text-shadow
   font-family:  'Nixie One', cursive
   color: white
-  width: 120px
-  line-height: 60px
+  width: 100px
+  line-height: 50px
   position: absolute
   bottom: -8px
   right: 0px
-  font-size: 60px
+  font-size: 50px
   text-align: right
   
 .gridster ul li

@@ -12,14 +12,14 @@ class AlbumsController < ApplicationController
     @data = client.search_albums_from_artist params[:query]
   end
 
-  # GET /albums
+  # GET /albums?month=1&year=2013
   # GET /albums.json
   def index
     if params[:month] and params[:year]
       @date = Date.new params[:year].to_i, params[:month].to_i, 1
     else
-      @date = Date.today
-    end 
+      @date = Date.new Date.today.year, Date.today.month, 1
+    end
     results = Album.albums_for_month_and_year @date.month, @date.year
     @albums = Array.new Time.days_in_month(@date.month, @date.year)
     results.each do |album|
@@ -90,6 +90,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :author, :rating, :text, :cover, :deezer_id).merge(user_id: current_user.id)
+      params.require(:album).permit(:title, :author, :rating, :text, :cover, :date, :deezer_id).merge(user_id: current_user.id)
     end
 end
