@@ -1,49 +1,49 @@
 - if @album.errors.any?
-	#error_explanation
-		%h2= "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
-		%ul
-			- @album.errors.full_messages.each do |msg|
-				%li= msg
+  #error_explanation
+    %h2= "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
+    %ul
+      - @album.errors.full_messages.each do |msg|
+        %li= msg
 
 .section
-	.fieldset
-		= form_tag find_album_path, remote: true, method: :get do
-			= label_tag :query
-			= text_field_tag :query
-	= form_for @album do |f|
-		.fieldset
-			= f.label :title
-			= f.text_field :title
-		.fieldset
-			= f.label :author
-			= f.text_field :author
-		.fieldset
-			= f.label :rating
-			#stars
-		.fieldset
-			= f.label :text
-			= f.text_area :text
-		.fieldset
-			= f.label :date
-			= f.date_field :date, class: 'datepicker'
-		.fieldset
-			=image_tag @album.cover
+  .fieldset
+    = form_tag find_album_path, remote: true, method: :get do
+      = label_tag :query
+      = text_field_tag :query
+  = form_for @album do |f|
+    .fieldset
+      = f.label :title
+      = f.text_field :title
+    .fieldset
+      = f.label :author
+      = f.text_field :author
+    .fieldset
+      = f.label :rating
+      #stars
+    .fieldset
+      = f.label :text
+      = f.text_area :text
+    .fieldset
+      = f.label :date
+      = f.date_field :date, class: 'datepicker'
+    .fieldset
+      =image_tag @album.cover
 
-		= f.hidden_field :deezer_id
-		= f.hidden_field :cover
+    = f.hidden_field :deezer_id
+    = f.hidden_field :cover
 
-		.actions
-			= f.submit 'Save', class: 'btn btn-primary btn-lg btn-block'
-			= link_to 'Back', albums_path, class: 'btn btn-info btn-lg btn-block'
+    .actions
+      = f.submit 'Save', class: 'btn btn-primary btn-lg btn-block'
+      = link_to 'Back', albums_path, class: 'btn btn-info btn-lg btn-block'
 
-	:coffeescript
-		$('#stars').raty
-			starOff: '/assets/star-off.png'
-			starOn : '/assets/star-on.png'
-			scoreName: 'album[rating]',
-			width: '520px'
+  :coffeescript
+    $('#stars').raty
+      starOff: '/assets/star-off.png'
+      starOn : '/assets/star-on.png'
+      scoreName: 'album[rating]',
+      width: '520px'
 
-		$('.datepicker').pickadate
-			format: 'yyyy-mm-dd',
-			formatSubmit: 'yyyy-mm-dd',
-			hiddenSuffix: ''
+    $('.datepicker').pickadate
+      format: 'yyyy-mm-dd',
+      formatSubmit: 'yyyy-mm-dd',
+      hiddenSuffix: ''

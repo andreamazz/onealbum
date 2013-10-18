@@ -1,0 +1,21 @@
+.section
+  %h1 Sign in
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  .section
+    .fieldset
+      = f.label :login
+      = f.text_field :login, autofocus: true
+    .fieldset
+      = f.label :password
+      = f.password_field :password
+    .fieldset
+    -if devise_mapping.rememberable?
+      = f.label :remember_me
+      = f.check_box :remember_me, class: 'icheck', "data-skin"=>"square", "data-color"=>"blue"
+      %br
+
+    = f.submit "Sign in", class: 'btn btn-primary btn-lg btn-block'
+
+:javascript
+  icheck()

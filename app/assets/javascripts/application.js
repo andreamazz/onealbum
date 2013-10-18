@@ -16,6 +16,7 @@
 //= require jquery.facebox
 //= require jquery.raty.min
 //= require jquery.gridster.min
+//= require jquery.icheck
 //= require picker
 //= require picker.date
 //= require home

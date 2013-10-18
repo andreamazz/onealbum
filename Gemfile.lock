@@ -75,6 +75,9 @@ GEM
       railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.6.5)
+    icheck-rails (0.9.0.2)
+      jquery-rails
+      rails (>= 3.1.0)
     jbuilder (1.5.2)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -170,6 +173,7 @@ DEPENDENCIES
   facebox-rails
   font-awesome-rails
   haml-rails
+  icheck-rails
   jbuilder (~> 1.2)
   jquery-rails
   pg
