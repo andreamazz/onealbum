@@ -5,6 +5,7 @@ class Album < ActiveRecord::Base
                                         greater_than_or_equal_to: CONSTANTS[:rating][:min],
                                         less_than_or_equal_to: CONSTANTS[:rating][:max]
                                       }
+  validates :date, uniqueness: true
 
   def self.albums_for_month_and_year month, year
     start_date = Date.new year, month, 1
