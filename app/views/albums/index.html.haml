@@ -1,20 +1,22 @@
 .gridster
   %ul
+    - calendar = Array.new Time.days_in_month(@date.month, @date.year)
+    - @albums.each { |album| calendar[album.date.day] = album }  
     - days = @date.days_to_week_start # Number of days to show of the previous month
     - tail = (7 - (Time.days_in_month(@date.month, @date.year) + days) % 7) # Number of days to show of the newxt month
     - (0...days).each do |index|
       %li{'data-row' => '1', 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
         .no-day
-    - @albums.each_with_index do |album, i|
+    - calendar.each_with_index do |album, i|
       %li{'data-row' => (((i+days) / 7) + 1), 'data-col' => (((i + days) % 7) + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
         -if album
           = image_tag album.cover
         -else
           .empty
         %span.date= (i + 1)
-    - tail_start = (((@albums.size + days) % 7) + 1) - 1 # The starting index of the calendar's tail
+    - tail_start = (((calendar.size + days) % 7) + 1) - 1 # The starting index of the calendar's tail
     - (tail_start...tail_start+tail).each do |index|
-      %li{'data-row' => (((@albums.size + days) / 7) + 1), 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
+      %li{'data-row' => (((calendar.size + days) / 7) + 1), 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
         .no-day        
 
 = link_to 'Logout', destroy_user_session_path, method: :delete

@@ -1,8 +1,8 @@
 class AlbumsController < ApplicationController
   include Deezer
   
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :set_album, only: [:show, :edit, :update, :destroy]  
 
   respond_to :html, :json, :js
 
@@ -20,11 +20,7 @@ class AlbumsController < ApplicationController
     else
       @date = Date.new Date.today.year, Date.today.month, 1
     end
-    results = Album.albums_for_month_and_year @date.month, @date.year
-    @albums = Array.new Time.days_in_month(@date.month, @date.year)
-    results.each do |album|
-      @albums[album.date.day] = album
-    end
+    @albums = Album.albums_for_month_and_year @date.month, @date.year
   end
 
   # GET /albums/1
@@ -44,7 +40,6 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    
     @album = Album.new(album_params)
 
     respond_to do |format|
