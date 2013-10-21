@@ -42,6 +42,9 @@ describe AlbumsController do
   
   describe 'GET #find_album' do
     it 'renders the :find_album view' do
+      result = { artist: 'Eric Clapton', artist_id: '0', title: 'Slow Hand', id: '6227255', cover: 'http://api.deezer.com/2.0/album/6227255/image' }
+      # Using a mock and a stub for the remote call. Test the Deezer fetcher in lib/deezer_spec
+      allow(Album).to receive(:search_deezer_albums_from_artist).and_return([result])
       get :find_album, query: 'clapton', format: :js
       expect(response).to render_template :find_album
     end

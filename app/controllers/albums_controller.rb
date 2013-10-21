@@ -1,5 +1,4 @@
 class AlbumsController < ApplicationController
-  include Deezer
   
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_album, only: [:show, :edit, :update, :destroy]  
@@ -8,8 +7,7 @@ class AlbumsController < ApplicationController
 
   # GET /find_album?query=artist
   def find_album
-    client = Fetcher.new()
-    @data = client.search_albums_from_artist params[:query]
+    @data = Album.search_deezer_albums_from_artist params[:query]
   end
 
   # GET /albums?month=1&year=2013

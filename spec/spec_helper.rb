@@ -24,6 +24,8 @@ RSpec.configure do |config|
   # Simpler FactoryGirl syntax
   config.include FactoryGirl::Syntax::Methods
 
+  config.filter_run_excluding slow: true
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

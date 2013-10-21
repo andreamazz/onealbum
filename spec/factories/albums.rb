@@ -13,6 +13,6 @@ FactoryGirl.define do
     factory :invalid_album do
       title nil
     end
-    
   end
+
 end
