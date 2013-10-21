@@ -42,7 +42,7 @@ describe AlbumsController do
   
   describe 'GET #find_album' do
     it 'renders the :find_album view' do
-      result = { artist: 'Eric Clapton', artist_id: '0', title: 'Slow Hand', id: '6227255', cover: 'http://api.deezer.com/2.0/album/6227255/image' }
+      result = { artist: 'Eric Clapton', artist_id: '0', title: 'Slowhand', id: '6227255', cover: 'http://api.deezer.com/2.0/album/6227255/image' }
       # Using a mock and a stub for the remote call. Test the Deezer fetcher in lib/deezer_spec
       allow(Album).to receive(:search_deezer_albums_from_artist).and_return([result])
       get :find_album, query: 'clapton', format: :js
@@ -137,9 +137,9 @@ describe AlbumsController do
     
     context 'with valid attributes' do
       it 'updates the album in the database' do
-        patch :update, id: @album, album: attributes_for(:album, title: 'Slow Hand', author: 'Eric Clapton', rating: CONSTANTS[:rating][:max])
+        patch :update, id: @album, album: attributes_for(:album, title: 'Slowhand', author: 'Eric Clapton', rating: CONSTANTS[:rating][:max])
         @album.reload
-        expect(@album.title).to eq('Slow Hand')
+        expect(@album.title).to eq('Slowhand')
         expect(@album.author).to eq('Eric Clapton')
         expect(@album.rating).to eq(CONSTANTS[:rating][:max])
       end
@@ -152,12 +152,12 @@ describe AlbumsController do
     
     context 'with invalid attributes' do
       it 'does not save the new album in the database' do
-        patch :update, id: @album, album: attributes_for(:album, title: 'Slow Hand', author: nil)
+        patch :update, id: @album, album: attributes_for(:album, title: 'Slowhand', author: nil)
         @album.reload
         expect(@album.title).to_not eq('Slow Hand')
       end
       it 're-renders the :edit template' do
-        patch :update, id: @album, album: attributes_for(:album, title: 'Slow Hand', author: nil)
+        patch :update, id: @album, album: attributes_for(:album, title: 'Slowhand', author: nil)
         expect(response).to render_template :edit
       end
     end

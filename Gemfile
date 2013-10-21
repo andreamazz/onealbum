@@ -39,9 +39,9 @@ end
 group :test do
   gem 'faker'
   gem 'capybara'
-  gem 'database_cleaner'
+  gem 'poltergeist'
+  gem 'database_cleaner'  # DatabaseCleaner required to test user authentication protected routes
   gem 'launchy'
-  gem 'selenium-webdriver'
 end
 
 group :production do
