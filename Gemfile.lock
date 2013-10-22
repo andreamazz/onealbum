@@ -101,6 +101,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.0.1)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.0)
     kgio (2.8.1)
     launchy (2.3.0)
@@ -221,6 +224,7 @@ DEPENDENCIES
   icheck-rails
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
   launchy
   pg
   poltergeist

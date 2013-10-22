@@ -8,7 +8,11 @@
       %li{'data-row' => '1', 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
         .no-day
     - calendar.each_with_index do |album, i|
-      %li{'data-row' => (((i+days) / 7) + 1), 'data-col' => (((i + days) % 7) + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
+      - li_id = album ? "date_#{album.date.day}" : ""
+      - li_data = (album & current_user) ? album_path(album.id) : ""
+      - li_row = (((i+days) / 7) + 1)
+      - li_col = (((i + days) % 7) + 1)
+      %li{id: li_id, 'data-album' => li_data, 'data-row' => li_row, 'data-col' => li_col, 'data-sizex' => '1', 'data-sizey' => '1'}
         -if album
           = image_tag album.cover
         -else

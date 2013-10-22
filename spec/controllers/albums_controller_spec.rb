@@ -109,9 +109,9 @@ describe AlbumsController do
           post :create, album: attributes_for(:album)
         }.to change(Album, :count).by(1)
       end
-      it 'redirects to albums#show' do
+      it 'redirects to albums#index' do
         post :create, album: attributes_for(:album)
-        expect(response).to redirect_to album_path(assigns[:album])
+        expect(response).to redirect_to albums_path
       end
     end
     
