@@ -9,7 +9,9 @@
         .no-day
     - calendar.each_with_index do |album, i|
       - li_id = album ? "date_#{album.date.day}" : ""
-      - li_data = (album & current_user) ? album_path(album.id) : ""
+      - li_data = ""
+      - if current_user and album
+        - li_data = album_path(album.id)
       - li_row = (((i+days) / 7) + 1)
       - li_col = (((i + days) % 7) + 1)
       %li{id: li_id, 'data-album' => li_data, 'data-row' => li_row, 'data-col' => li_col, 'data-sizex' => '1', 'data-sizey' => '1'}
