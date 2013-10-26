@@ -23,25 +23,47 @@ feature 'Album management' do
     click_button 'Save'
   end
   
-  scenario 'create a new album', js: true do
-    sign_in @user
-    expect {
+  describe 'creating a new album', slow: true do
+    scenario 'creates a new album in the database', js: true do
+      sign_in @user
+      expect {
+        create_album
+      }.to change(Album, :count).by(1)
+    end
+  
+    scenario 'redirects to the album list', js: true do
+      sign_in @user
       create_album
-    }.to change(Album, :count).by(1)
+      expect(current_path).to eq albums_path
+    end
   end
   
-  scenario 'creating a new album redirects to the album list', js: true do
-    sign_in @user
-    create_album
-    expect(current_path).to eq albums_path
-  end
-  
-  scenario 'clicking on a calendar cell when logged in opens album#show', js: true do
+  scenario 'clicking on a calendar cell when logged in opens album#show', js: true, slow: true do
     sign_in @user
     create_album
     visit albums_path
-    find("#date_#{Date.today.day}").click
+    find_link("#{Date.today.day}").click
     expect(current_path).to eq album_path(Album.last)
+  end
+  
+  describe 'in the album index' do
+    before :each do
+      visit albums_path
+    end
+    
+    scenario 'the current month is shown' do
+      expect(page).to have_content(I18n.t("date.month_names")[Date.today.month])
+    end
+  
+    scenario 'clicking the left arrow goes to the previous month', js: true do
+      find('.icon-chevron-left').click
+      expect(page).to have_content(I18n.t("date.month_names")[Date.today.month - 1])
+    end
+  
+    scenario 'clicking the right arrow goes to the next month', js: true do
+      find('.icon-chevron-right').click
+      expect(page).to have_content(I18n.t("date.month_names")[Date.today.month + 1])
+    end
   end
   
 end

@@ -5,9 +5,6 @@
 $(document).on 'page:change', -> $.facebox.settings.inited = false
 
 $ ->
-  $('.gridster').delegate 'li', 'click', () ->
-    if $(@).data('album')
-      document.location = $(@).data('album')
 
 @icheck = () ->
   if $(".icheck").length > 0
