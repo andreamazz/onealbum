@@ -51,6 +51,17 @@ feature 'Album management' do
       visit albums_path
     end
     
+    scenario 'when logged in the new album button is visible' do
+      sign_in @user
+      visit albums_path
+      expect(page).to have_content("New")
+    end
+    
+    scenario 'when not logged in the new album button is visible' do
+      visit albums_path
+      expect(page).to_not have_content("New")
+    end
+    
     scenario 'the current month is shown' do
       expect(page).to have_content(I18n.t("date.month_names")[Date.today.month])
     end

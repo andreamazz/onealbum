@@ -1,37 +1,40 @@
 - days_in_month = Time.days_in_month(@date.month, @date.year)
-
-= link_to albums_path(month: (@date - 1).month, year: (@date - 1).year) do
-  %i.icon-chevron-left
-= I18n.t("date.month_names")[@date.month]
-= link_to albums_path(month: (@date + days_in_month).month, year: (@date + days_in_month).year) do
-  %i.icon-chevron-right
+.calendar
+  .calendar-header
+    = link_to albums_path(month: (@date - 1).month, year: (@date - 1).year) do
+      %i.icon-chevron-left
+    %span.month-title= I18n.t("date.month_names")[@date.month]
+    = link_to albums_path(month: (@date + days_in_month).month, year: (@date + days_in_month).year) do
+      %i.icon-chevron-right
   
-.gridster
-  %ul
-    - calendar = Array.new days_in_month
-    - @albums.each { |album| calendar[album.date.day - 1] = album }  
-    - days = @date.days_to_week_start # Number of days to show of the previous month
-    - tail = (7 - (days_in_month + days) % 7) # Number of days to show of the newxt month
-    - (0...days).each do |index|
-      %li{'data-row' => '1', 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
-        .no-day
-    - calendar.each_with_index do |album, i|
-      - li_row = (((i+days) / 7) + 1)
-      - li_col = (((i + days) % 7) + 1)
-      %li{'data-row' => li_row, 'data-col' => li_col, 'data-sizex' => '1', 'data-sizey' => '1'}
-        - if album
-          = link_to album_path(album) do
-            = image_tag album.cover
-            %span.date= (i + 1)
-        -else
-          .empty
-          %span.date= (i + 1)
-    - tail_start = (((calendar.size + days) % 7) + 1) - 1 # The starting index of the calendar's tail
-    - (tail_start...tail_start+tail).each do |index|
-      %li{'data-row' => (((calendar.size + days) / 7) + 1), 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
-        .no-day        
+  .gridster
+    %ul
+      - calendar = Array.new days_in_month
+      - @albums.each { |album| calendar[album.date.day - 1] = album }  
+      - days = @date.days_to_week_start # Number of days to show of the previous month
+      - tail = (7 - (days_in_month + days) % 7) # Number of days to show of the newxt month
+      - (0...days).each do |index|
+        %li{'data-row' => '1', 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
+          .no-day
+      - calendar.each_with_index do |album, i|
+        - li_row = (((i+days) / 7) + 1)
+        - li_col = (((i + days) % 7) + 1)
+        %li{'data-row' => li_row, 'data-col' => li_col, 'data-sizex' => '1', 'data-sizey' => '1'}
+          - if album
+            = link_to album_path(album) do
+              = image_tag album.cover
+              %span.date= (i + 1)
+          -else
+            .empty
+            %span.date-empty= (i + 1)
+      - tail_start = (((calendar.size + days) % 7) + 1) - 1 # The starting index of the calendar's tail
+      - (tail_start...tail_start+tail).each do |index|
+        %li{'data-row' => (((calendar.size + days) / 7) + 1), 'data-col' => (index + 1), 'data-sizex' => '1', 'data-sizey' => '1'}
+          .no-day        
 
-= link_to 'Logout', destroy_user_session_path, method: :delete
+  - if current_user
+    = link_to 'New album', new_album_path, class: 'btn btn-primary btn-lg btn-block button-new'
+    = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-info btn-lg btn-block button-new'
 
 :javascript
   $(function() {

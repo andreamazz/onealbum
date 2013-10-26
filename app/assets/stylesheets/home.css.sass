@@ -63,18 +63,16 @@ input:-webkit-autofill
   height: 100px
   position: relative
   top: -20px
-  background: #2E323A
-
+  background: #f8f8f8
+  
 .no-day
   @extend .empty
-  background: #515866
+  background: #fcfcfc
 
 .gs_w
-  border: 1px solid #aaa
   img
     height: 100px
     width: 100px
-    margin-top: -20px
     
 .cover
   width: 60px
@@ -87,7 +85,6 @@ input:-webkit-autofill
   font-size: 11px
   
 .date 
-  +single-text-shadow
   font-family:  'Nixie One', cursive
   color: white
   width: 100px
@@ -98,6 +95,39 @@ input:-webkit-autofill
   font-size: 50px
   text-align: right
   
+.date-empty
+  @extend .date
+  color: #787878
+  
+.gridster
+  border: 5px solid #ccc
+
+.calendar
+  width: 710px
+  margin: 0 auto
+
 .gridster ul li
   overflow: hidden
   +user-select(none)
+
+.calendar-header
+  margin-top: 40px
+  background: #ccc
+  color: #787878
+  height: 60px
+  width: 710px
+  line-height: 60px  
+  text-align: center
+  display: inline-block
+  a
+    color: #787878
+    text-decoration: none
+    width: 100px
+    display: inline-block
+    
+.month-title
+  display: inline-block
+
+.button-new
+  width: 710px
+  margin-top: 20px
