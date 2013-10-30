@@ -14,6 +14,11 @@ feature 'Album management' do
     click_button 'Sign in'
   end
   
+  def sign_out
+    visit albums_path
+    click_link 'Logout'
+  end
+  
   def create_album
     visit new_album_path
     fill_in 'Title', with: 'Born under a bad sign'
@@ -76,5 +81,28 @@ feature 'Album management' do
       expect(page).to have_content(I18n.t("date.month_names")[Date.today.month + 1])
     end
   end
+  
+  describe 'in the album show', js: true do
+    before :each do
+      sign_in @user
+      create_album
+      visit albums_path
+      find_link("#{Date.today.day}").click      
+    end
+    
+    scenario 'the album title is visible' do
+      expect(page).to have_content(Album.last.title)
+    end
+    
+    scenario 'when logged in the edit button is visible' do
+      expect(page).to have_content('Edit')
+    end
+    
+    scenario 'when logged in the edit button is not visible' do
+      sign_out
+      expect(page).to_not have_content('Edit')
+    end
+  end
+  
   
 end
