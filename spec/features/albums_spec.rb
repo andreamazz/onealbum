@@ -102,7 +102,15 @@ feature 'Album management' do
       sign_out
       expect(page).to_not have_content('Edit')
     end
+    
+    scenario 'when logged in the delete button is visible' do
+      expect(page).to have_content('Delete')
+    end
+    
+    scenario 'when logged in the delete button is not visible' do
+      sign_out
+      expect(page).to_not have_content('Delete')
+    end
   end
-  
   
 end

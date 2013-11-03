@@ -5,13 +5,13 @@ Since I've been using Google Music Unlimited I've been wanting to listen to a ne
 
 Dependencies
 --------------------
-Ruby 2
-Rails 4
-Sass
-Compass
-Haml
-RSpec
-Capybara
+* Ruby 2
+* Rails 4
+* Sass
+* Compass
+* Haml
+* RSpec
+* Capybara
 
 Testing suite
 --------------------

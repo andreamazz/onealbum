@@ -26,9 +26,13 @@
     .fieldset
       = f.label :date
       = f.date_field :date, class: 'datepicker'
-    .fieldset
-      =image_tag @album.cover
-
+    - if @album.cover
+      .fieldset
+        = f.label :cover
+        %br
+        =image_tag @album.cover, class: 'cover-full'
+        %br
+        
     = f.hidden_field :deezer_id
     = f.hidden_field :cover
 

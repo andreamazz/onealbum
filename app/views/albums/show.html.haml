@@ -3,18 +3,28 @@
 .section
   .fieldset
     %label Title:
-    %div= @album.title
+    .field= @album.title
   .fieldset
     %label Author:
-    %div= @album.author
+    .field= @album.author
   .fieldset
-    %label Rating:
-    %div= @album.rating
+    = image_tag @album.cover, class: 'cover-full'
+    -@album.rating
+    #stars-show
   .fieldset
     %label Text:
-    %div= @album.text
-  
+    .field= @album.text
+
   .actions
     = link_to 'Edit', edit_album_path(@album), class: 'btn btn-primary btn-lg btn-block' if current_user
-
+    = link_to 'Delete', album_path(@album), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-lg btn-block' if current_user
     = link_to 'Back', albums_path, class: 'btn btn-info btn-lg btn-block'
+
+:javascript
+  $('#stars-show').raty({
+    score: "#{@album.rating}",
+    starOff: '/assets/star-off.png',
+    starOn : '/assets/star-on.png',
+    width: '520px',
+    readOnly: true
+  });
