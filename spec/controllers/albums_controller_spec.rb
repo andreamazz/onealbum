@@ -3,21 +3,21 @@ require 'spec_helper'
 describe AlbumsController do
   
   describe 'GET #index' do
-    before :each do
-      @today = Date.today
-      @previous_1 = create(:album, date: Date.new(@today.year, @today.month - 1, 1))
-      @previous_15 = create(:album, date: Date.new(@today.year, @today.month - 1, 15))
-      @current_1 = create(:album, date: Date.new(@today.year, @today.month, 1))
-      @current_15 = create(:album, date: Date.new(@today.year, @today.month, 15)) 
-    end
+    
+    let(:today) { Date.today }
+    let(:last_month) { Date.today - 1.month }
+    let(:previous_1) { create(:album, date: Date.new(last_month.year, last_month.month, 1)) }
+    let(:previous_15) { create(:album, date: Date.new(last_month.year, last_month.month, 15)) }
+    let(:current_1) { create(:album, date: Date.new(today.year, today.month, 1)) }
+    let(:current_15) { create(:album, date: Date.new(today.year, today.month, 15)) }
     
     context 'with params[:year] and params[:month]' do
       before :each do
-        get :index, year: @today.year, month: @today.month - 1 # ask for the albums of the previous month
+        get :index, year: last_month.year, month: last_month.month # ask for the albums of the previous month
       end
       
       it 'populates an array of albums for the given month' do
-        expect(assigns(:albums)).to match_array([@previous_1, @previous_15])
+        expect(assigns(:albums)).to match_array([previous_1, previous_15])
       end
       
       it 'renders the :index view' do
@@ -31,7 +31,7 @@ describe AlbumsController do
       end
       
       it 'populates an array of albums for the current month' do
-        expect(assigns(:albums)).to match_array([@current_1, @current_15])
+        expect(assigns(:albums)).to match_array([current_1, current_15])
       end
       
       it 'renders the :index view' do

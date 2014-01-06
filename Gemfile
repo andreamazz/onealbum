@@ -9,7 +9,7 @@ gem 'devise'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
-gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'compass-rails', '~> 1.1.3'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 
