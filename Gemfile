@@ -20,6 +20,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'icheck-rails'
+gem 'pickdate'
 
 # gem 'gridster-rails'
 gem 'facebox-rails'
